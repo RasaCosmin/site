@@ -100,4 +100,13 @@ function initializePage() {
 // Initialize everything when DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
 	loadAllComponents();
+
+	//wait 300 milliseconds before setting the year
+	setTimeout(() => {
+		// Set the current year in the footer
+		const year = document.querySelector(".current-year");
+		if (year) {
+			year.textContent = new Date().getFullYear().toString();
+		}
+	}, 300);
 });
