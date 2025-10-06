@@ -95,6 +95,10 @@ function initializeContactForm() {
     if (form) {
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
+            if (!formMessage) {
+                console.error('form-message element not found');
+                return;
+            }
             formMessage.style.display = 'none';
             const data = new FormData(form);
             try {
