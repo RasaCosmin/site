@@ -12,7 +12,7 @@
             </div>
             <div class="contact-form fade-in">
                 <h3>Send us a message</h3>
-                <form>
+                <form id="contactForm" action="https://formspree.io/f/meorzpkv" method="POST">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -30,6 +30,7 @@
                         <textarea id="message" name="message" required></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Send Message</button>
+                    <div id="form-message" style="display:none;"></div>
                 </form>
             </div>
         </div>
