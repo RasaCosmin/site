@@ -115,8 +115,19 @@ function initializeContactForm() {
                     formMessage.style.color = 'green';
                     form.reset();
                 } else {
-                    const result = await response.json();
-                    formMessage.textContent = result.errors ? result.errors.map(e => e.message).join(', ') : 'Oops! Something went wrong.';
+                    let errorText = 'Oops! Something went wrong.';
+                    const contentType = response.headers.get('content-type') || '';
+                    if (contentType.includes('application/json')) {
+                        try {
+                            const result = await response.json();
+                            if (result.errors) {
+                                errorText = result.errors.map(e => e.message).join(', ');
+                            }
+                        } catch (jsonErr) {
+                            // Parsing failed, keep generic errorText
+                        }
+                    }
+                    formMessage.textContent = errorText;
                     formMessage.style.display = 'block';
                     formMessage.style.color = 'red';
                 }
